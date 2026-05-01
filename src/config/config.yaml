@@ -1,0 +1,60 @@
+# qdrant_db:
+#    collection_name: "document_chat"
+
+
+# embedding_model:
+#   provider: "huggingface"
+#   model_name: "sentance_transformer/allMini_LM_v6"
+
+# retriever:
+#   top_k: 5
+
+# llm:
+#   groq:
+#     provider: "groq"
+#     model_name: ""
+#     temperature: 0.2
+#     max_output_tokens: 2000
+  
+#   google:
+#     provider: "google"
+#     model_name: "gemini"
+#     temperature: 0.2
+#     max_output_tokens: 2000
+
+#   openai:
+#    provider: "openai"
+#    model_name: "GPT-5.4 mini"
+#    temperature: 0.2
+#    max_output_tokens: 2000
+
+qdrant_db:
+  collection_name: "document_chat"
+
+
+embedding_model:
+  provider: "huggingface"
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+
+retriever:
+  top_k:5
+
+
+llm:
+  groq:
+    provider: "groq"
+    model_name: "openai/gpt-oss-20b"
+    temprature: 0.2
+    max_output_tokens: 2000
+  
+  google:
+    provider: "google"
+    model_name: "gemini"
+    temprature: 0.2
+    max_output_tokens: 2000
+  
+  openai:
+    provider: "openai"
+    model_name: "GPT-5.4 mini"
+    temprature: 0.2
+    max_output_tokens: 2000
