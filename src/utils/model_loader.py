@@ -23,7 +23,7 @@ class Model_Loader:
             log.info("loaded embedding model", model=embedding_model_name)
             return HuggingFaceEmbeddings(model_name=embedding_model_name)
         except Exception as e:
-            log.error("Error loading embedding model", str(e))
+            log.error("Error loading embedding model", error=str(e))
             raise CustomException("failed to load embedding model", sys)
 
     def load_llm(self):
