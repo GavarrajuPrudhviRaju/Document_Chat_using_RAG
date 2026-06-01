@@ -6,9 +6,6 @@ from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from src.ingestion.document_ingestion import DocumentIngestion
-from src.retrieval.retrieval import ConversationalRAG
-from src.utils.file_ops import FastAPIFileAdapter
 from src.logger import GLOBAL_LOGGER as log
 from dotenv import load_dotenv
 
@@ -45,6 +42,9 @@ async def chat_index(files: List[UploadFile] = File(...),
                      chunk_overlap=Form(200)):
     try:
         log.info("document ingestion started")
+        from src.ingestion.document_ingestion import DocumentIngestion
+        from src.utils.file_ops import FastAPIFileAdapter
+
         wrapped = [FastAPIFileAdapter(file) for file in files]
         docingestion = DocumentIngestion()
 
@@ -61,6 +61,8 @@ async def chat_index(files: List[UploadFile] = File(...),
 async def ChatQuery(question=Form(...)):
     try:
         log.info("calling invoke method")
+        from src.retrieval.retrieval import ConversationalRAG
+
         cr = ConversationalRAG()
         # fetching history from database
         chat_history = ""

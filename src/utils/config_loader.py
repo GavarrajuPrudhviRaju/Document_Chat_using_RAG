@@ -14,7 +14,7 @@ def load_config(config_path: str = None):
     env_path = os.getenv("config_path")
 
     if config_path is None:
-        config_path = env_path
+        config_path = env_path or "src/config/config.yaml"
 
     path = Path(config_path)
 

@@ -45,11 +45,11 @@ class Model_Loader:
             log.info("loading llm", provider=provider_key, model=model_name)
 
             if provider == "google":
-                return ChatGoogleGenerativeAI(model=model_name, google_api_key="", temperature=temperature, max_tokens=max_tokens)
+                return ChatGoogleGenerativeAI(model=model_name, google_api_key=os.getenv("GOOGLE_API_KEY"), temperature=temperature, max_tokens=max_tokens)
             elif provider == "groq":
                 return ChatGroq(model=model_name, api_key=os.getenv("GROQ_API_KEY"), max_tokens=max_tokens, temperature=temperature)
             else:
-                return ChatOpenAI(model=model_name, api_key=os.getenv("OPENAPI_API_KEY"), max_tokens=max_tokens, temperature=temperature)
+                return ChatOpenAI(model=model_name, api_key=os.getenv("OPENAI_API_KEY") or os.getenv("OPEN_API_KEY"), max_tokens=max_tokens, temperature=temperature)
         except Exception as e:
             log.error("Error loading llm", error=str(e))
             raise ValueError("error loading llm")

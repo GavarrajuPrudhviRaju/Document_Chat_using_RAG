@@ -12,3 +12,6 @@ wheels/
 .env
 
 logs/
+src/logger/logs/
+qdrantdb/
+data/*.pdf

@@ -19,16 +19,16 @@
             <h1>Document Chat</h1>
         </div>
         <nav class="mode-switch">
-            <button class="tab-btn" data-tab="chat">Doc Chat</button>
+            <button class="tab-btn active" data-tab="chat">Doc Chat</button>
         </nav>
     </header>
 
     <main class="container">
         <!-- ============== CHAT ============== -->
-        <section id="tab-chat" class="tab-panel">
+        <section id="tab-chat" class="tab-panel active">
             <div class="card">
                 <h2>💬 Chat with your Documents</h2>
-                <p class="muted">Upload PDF/DOCX/TXT; we’ll index to FAISS and enable RAG chat.</p>
+                <p class="muted">Upload PDF/DOCX/TXT; we'll index to Qdrant and enable RAG chat.</p>
 
                 <form id="form-chat-index" class="form-grid" onsubmit="return false;">
                     <div class="field">
@@ -69,7 +69,7 @@
                 <form id="form-chat-ask" class="form-grid" onsubmit="return false;">
                     <div class="field">
                         <label for="chat-q">Your Question</label>
-                        <input id="chat-q" type="text" placeholder="Ask a question about your documents…" />
+                        <input id="chat-q" type="text" placeholder="Ask a question about your documents..." />
                     </div>
                     <div class="actions">
                         <button id="btn-ask" class="btn">Send</button>
@@ -87,13 +87,13 @@
     </main>
 
     <footer class="app-footer">
-        <div>© Document Chat • Demo UI</div>
-        <div class="tiny">Frontend only – hook to your FastAPI later.</div>
+        <div>Document Chat</div>
+        <div class="tiny">FastAPI document Q&A</div>
     </footer>
 
     <script>
         // Base URL for API (same origin when opened via FastAPI)
-        const API_BASE = "http://127.0.0.1:8000";
+        const API_BASE = window.location.origin;
 
         // Tab switching (unchanged)
         const tabs = document.querySelectorAll(".tab-btn");
@@ -123,7 +123,7 @@
             if (!files.length) { meta.textContent = "Please upload at least one file."; return; }
 
             try {
-                meta.textContent = "Building index…";
+                meta.textContent = "Building index...";
 
                 const fd = new FormData();
                 [...files].forEach(f => fd.append("files", f)); // <-- must be 'files'
@@ -159,7 +159,7 @@
             // }
 
             try {
-                ans.textContent = "Thinking…";
+                ans.textContent = "Thinking...";
 
                 const fd = new FormData();
                 fd.append("question", q);
